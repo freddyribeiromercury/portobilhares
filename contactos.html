@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portobilhares — Contactos. Rua António Cândido, nº 39, 4200-076 Porto. Tel: 222 054 616 / 933 266 520.">
+  <title>Contactos — Portobilhares Porto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ── NAVBAR ───────────────────────────────────── -->
+<nav class="navbar" id="navbar" role="navigation" aria-label="Navegação principal">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="Assets/logo.jpg" alt="Portobilhares — logótipo">
+      <span class="nav-logo-text">PORTOBILHARES</span>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html">Início</a></li>
+      <li><a href="bilhares.html">Bilhares</a></li>
+      <li><a href="servicos.html">Serviços</a></li>
+      <li><a href="contactos.html">Contactos</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="tel:+351222054616" class="nav-phone">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 8.81 19.79 19.79 0 01.02 2.18 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        222 054 616
+      </a>
+      <a href="contactos.html" class="btn btn-primary btn-sm">Orçamento</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" role="navigation">
+  <a href="index.html">Início</a>
+  <a href="bilhares.html">Bilhares</a>
+  <a href="servicos.html">Serviços</a>
+  <a href="contactos.html">Contactos</a>
+  <a href="tel:+351222054616" class="mobile-phone">222 054 616</a>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     PAGE HEADER
+════════════════════════════════════════════════ -->
+<header class="page-header">
+  <div class="page-header-bg" aria-hidden="true">CONTACTOS</div>
+  <div class="page-header-inner">
+    <p class="section-eyebrow">Fale Connosco</p>
+    <h1 class="section-title xl" style="margin-bottom:1rem;">Contactos</h1>
+    <p class="section-body">Estamos disponíveis para orçamentos, esclarecimentos e visitas à nossa loja em Porto. Ligue-nos ou preencha o formulário.</p>
+  </div>
+</header>
+
+<!-- ════════════════════════════════════════════════
+     CONTACT MAIN
+════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="contact-grid">
+
+    <!-- LEFT: FORM ───────────────────────────────── -->
+    <div class="reveal">
+      <p class="section-eyebrow" style="margin-bottom:1.5rem;">Enviar Mensagem</p>
+
+      <form id="contactForm" novalidate>
+        <div style="display:flex; flex-direction:column; gap:1.25rem;">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="c-nome">Nome</label>
+              <input class="form-input" id="c-nome" type="text" placeholder="O seu nome" required autocomplete="name">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="c-tel">Telefone</label>
+              <input class="form-input" id="c-tel" type="tel" placeholder="912 345 678" required autocomplete="tel">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="c-email">Email</label>
+            <input class="form-input" id="c-email" type="email" placeholder="email@exemplo.com" autocomplete="email">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="c-assunto">Assunto</label>
+            <select class="form-select" id="c-assunto">
+              <option value="" disabled selected>Seleccione o assunto...</option>
+              <option>Pedido de Orçamento — Serviço Técnico</option>
+              <option>Compra de Bilhar / Matraquilhos</option>
+              <option>Instalação em Comissão (Bar / Café)</option>
+              <option>Informação sobre Produtos</option>
+              <option>Informação sobre Acessórios</option>
+              <option>Outro</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="c-msg">Mensagem</label>
+            <textarea class="form-textarea" id="c-msg" style="min-height:160px;" placeholder="Descreva o que necessita — serviço, tipo de bilhar, localização..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" data-label="Enviar Mensagem" style="align-self:flex-start;">
+            Enviar Mensagem
+          </button>
+
+          <div class="form-success" id="contactSuccess" role="alert">
+            Mensagem enviada com sucesso. Responderemos brevemente.
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- RIGHT: MAP + INFO ────────────────────────── -->
+    <div class="contact-info reveal">
+
+      <!-- MAP -->
+      <div class="contact-map">
+        <iframe
+          src="https://maps.google.com/maps?q=41.164440,-8.608527&hl=pt&z=16&output=embed"
+          title="Portobilhares — Rua António Cândido, nº 39, Porto"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+
+      <!-- CONTACT DETAILS -->
+      <div class="contact-details">
+
+        <div class="contact-item">
+          <div class="contact-item-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Morada</div>
+            <div class="contact-item-value">
+              Rua António Cândido, nº 39<br>
+              4200-076 Porto (Paranhos)<br>
+              <a href="https://www.google.com/maps?q=41.164440,-8.608527" target="_blank" rel="noopener noreferrer" style="color:var(--amber); font-size:0.8rem; letter-spacing:0.06em; margin-top:0.4rem; display:inline-block;">
+                Abrir no Google Maps
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:middle; margin-left:3px;"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-item-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 8.81 19.79 19.79 0 01.02 2.18 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Telefone</div>
+            <div class="contact-item-value">
+              <a href="tel:+351222054616">222 054 616</a> (fixo)<br>
+              <a href="tel:+351933266520">933 266 520</a> (telemóvel)
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-item-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-value">
+              <a href="mailto:portobilhares@gmail.com">portobilhares@gmail.com</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-item-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Facebook</div>
+            <div class="contact-item-value">
+              <a href="https://www.facebook.com/p/Portobilhares-100063835844620/" target="_blank" rel="noopener noreferrer">
+                Portobilhares
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-item-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Horário</div>
+            <div class="contact-item-value">
+              Segunda a Sábado<br>
+              <span style="color:var(--amber);">Horário a confirmar</span><br>
+              <span style="font-size:0.78rem; color:rgba(232,223,200,0.4);">Contacte-nos para confirmar disponibilidade</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /contact-details -->
+    </div><!-- /contact-info -->
+
+  </div><!-- /contact-grid -->
+</section>
+
+<!-- ════════════════════════════════════════════════
+     B2B TEASER
+════════════════════════════════════════════════ -->
+<section class="section" style="background:var(--charcoal); border-top:1px solid var(--border); padding:4rem 2rem;">
+  <div class="section-inner">
+    <div style="display:grid; grid-template-columns:1fr auto; gap:3rem; align-items:center; flex-wrap:wrap;" class="reveal">
+      <div>
+        <p class="section-eyebrow">Para Estabelecimentos</p>
+        <h2 class="section-title" style="font-size:clamp(2rem,4vw,3.5rem); margin-bottom:0.75rem;">Quer instalar um bilhar<br>no seu bar ou café?</h2>
+        <p class="section-body">Instalação gratuita em regime de comissão. Assistência técnica incluída. Porto e Norte de Portugal.</p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:0.75rem; flex-shrink:0;">
+        <a href="servicos.html#comissao" class="btn btn-primary">Saber Mais</a>
+        <a href="tel:+351933266520" class="btn btn-outline">Ligar: 933 266 520</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <img src="Assets/logo.jpg" alt="Portobilhares" class="footer-logo">
+        <div class="footer-brand-name">PORTOBILHARES</div>
+        <p class="footer-tagline">Venda e Assistência Técnica de Bilhares, Matraquilhos e Jogos em Geral. Porto, Portugal.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Navegação</div>
+        <ul class="footer-links" role="list">
+          <li><a href="index.html">Início</a></li>
+          <li><a href="bilhares.html">Bilhares</a></li>
+          <li><a href="servicos.html">Serviços</a></li>
+          <li><a href="contactos.html">Contactos</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Produtos</div>
+        <ul class="footer-links" role="list">
+          <li><a href="bilhares.html">Bilhares Snooker</a></li>
+          <li><a href="bilhares.html">Bilhares Pool</a></li>
+          <li><a href="bilhares.html">Bilhar Livre</a></li>
+          <li><a href="bilhares.html">Matraquilhos</a></li>
+          <li><a href="bilhares.html">Acessórios</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contacto</div>
+        <div class="footer-contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 8.81 19.79 19.79 0 01.02 2.18 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          <span><a href="tel:+351222054616">222 054 616</a> / <a href="tel:+351933266520">933 266 520</a></span>
+        </div>
+        <div class="footer-contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Rua António Cândido, nº 39<br>4200-076 Porto (Paranhos)</span>
+        </div>
+        <div class="footer-contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          <a href="https://www.facebook.com/p/Portobilhares-100063835844620/" target="_blank" rel="noopener noreferrer">Facebook · Portobilhares</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Portobilhares. Todos os direitos reservados.</span>
+      <span>Porto, Portugal · NIF 211 633 739</span>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<style>
+  @media (max-width: 768px) {
+    .section-inner > div[style*="grid-template-columns:1fr auto"] {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
+</body>
+</html>

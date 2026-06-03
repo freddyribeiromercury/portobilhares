@@ -229,7 +229,7 @@
 ════════════════════════════════════════════════ -->
 <section class="section" style="background:var(--charcoal); border-top:1px solid var(--border);">
   <div class="section-inner">
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start;" class="reveal">
+    <div class="two-col-grid reveal">
 
       <!-- left: text -->
       <div>
@@ -373,15 +373,5 @@
 </footer>
 
 <script src="main.js"></script>
-<style>
-  /* responsive fix for the quote form grid */
-  @media (max-width: 768px) {
-    #quoteForm + div,
-    section .section-inner > div[style*="grid-template-columns:1fr 1fr"] {
-      grid-template-columns: 1fr !important;
-      gap: 2.5rem !important;
-    }
-  }
-</style>
 </body>
 </html>

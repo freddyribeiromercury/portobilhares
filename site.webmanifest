@@ -1,0 +1,22 @@
+{
+  "name": "Portobilhares",
+  "short_name": "Portobilhares",
+  "description": "Venda e Assistência Técnica de Bilhares, Matraquilhos e Jogos em Geral. Porto, Portugal.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#c8793a",
+  "lang": "pt-PT",
+  "icons": [
+    {
+      "src": "Assets/favicon/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "Assets/favicon/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+# Security & caching headers (Netlify / Cloudflare Pages format)
+# Static hosts that don't read this file will simply ignore it.
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'self'; object-src 'none'; base-uri 'self'; form-action 'self'
+
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/styles.css
+  Cache-Control: public, max-age=86400
+
+/main.js
+  Cache-Control: public, max-age=86400
+
+/Assets/*
+  Cache-Control: public, max-age=2592000, immutable
+
+/*.mp4
+  Cache-Control: public, max-age=2592000, immutable
+
+/site.webmanifest
+  Cache-Control: public, max-age=86400
+
+/favicon.ico
+  Cache-Control: public, max-age=2592000, immutable

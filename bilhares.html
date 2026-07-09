@@ -40,6 +40,35 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+
+  <!-- Structured Data: Catálogo -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Catálogo de bilhares e matraquilhos no Porto",
+    "description": "Mesas de snooker, pool, bilhar livre / carambola e matraquilhos (matrecos), novos e usados, com entrega e instalação no Porto e Norte de Portugal.",
+    "itemListElement": [
+      { "@type": "Product", "position": 1, "name": "Mesas de bilhar snooker", "description": "Mesas de snooker de 10 e 12 pés, novas e usadas, com ardósia e pano de torneio." },
+      { "@type": "Product", "position": 2, "name": "Mesas de bilhar pool", "description": "Mesas de pool (bilhar americano) de 7, 8 e 9 pés para uso doméstico ou comercial." },
+      { "@type": "Product", "position": 3, "name": "Mesas de bilhar livre / carambola", "description": "Mesas de bilhar livre e mesas mistas snooker/livre, com ardósia e borrachas premium." },
+      { "@type": "Product", "position": 4, "name": "Matraquilhos (matrecos)", "description": "Mesas de matraquilhos domésticas e profissionais, novas e usadas, revistas e testadas." },
+      { "@type": "Product", "position": 5, "name": "Tacos e acessórios de bilhar", "description": "Tacos standard, de torneio e personalizados, panos, bolas, giz, taqueiras, iluminação e contadores." }
+    ]
+  }
+  </script>
+
+  <!-- Structured Data: Breadcrumb -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://portobilhares.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Bilhares", "item": "https://portobilhares.com/bilhares.html" }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -54,6 +83,8 @@
       <li><a href="index.html">Início</a></li>
       <li><a href="bilhares.html">Bilhares</a></li>
       <li><a href="servicos.html">Serviços</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="faq.html">FAQ</a></li>
       <li><a href="contactos.html">Contactos</a></li>
     </ul>
     <div class="nav-right">
@@ -73,6 +104,8 @@
   <a href="index.html">Início</a>
   <a href="bilhares.html">Bilhares</a>
   <a href="servicos.html">Serviços</a>
+  <a href="blog.html">Blog</a>
+  <a href="faq.html">FAQ</a>
   <a href="contactos.html">Contactos</a>
   <a href="tel:+351222054616" class="mobile-phone">222 054 616</a>
 </div>
@@ -309,6 +342,23 @@
 </section>
 
 <!-- ════════════════════════════════════════════════
+     GUIA DE COMPRA (SEO)
+════════════════════════════════════════════════ -->
+<section class="section" style="background:var(--charcoal); border-top:1px solid var(--border);">
+  <div class="section-inner">
+    <div class="article-content reveal">
+      <p class="section-eyebrow">Guia de Compra</p>
+      <h2 class="section-title">Como escolher a mesa certa</h2>
+      <p>Comprar uma mesa de bilhar ou de matraquilhos é um investimento para décadas — e a escolha certa depende de três factores: o espaço disponível, o tipo de jogo e o uso previsto.</p>
+      <p><strong>O espaço decide primeiro.</strong> Antes de escolher o modelo, meça a divisão: à dimensão da mesa é preciso somar o comprimento de um taco (cerca de 1,45 m) a toda a volta. Uma mesa de pool de 8 pés precisa de uma sala com pelo menos 5,3 × 4,2 m; um snooker de competição de 12 pés exige cerca de 6,5 × 4,7 m. Preparámos um guia completo sobre o <a href="blog-espaco-mesa-bilhar.html">espaço necessário para uma mesa de bilhar</a>, com a tabela de medidas por tipo de mesa.</p>
+      <p><strong>O tipo de jogo define a mesa.</strong> O snooker joga-se em mesas grandes com bolsos apertados e pano rápido; o pool (bilhar americano) é mais compacto e versátil, ideal para casa ou bar; o bilhar livre / carambola dispensa bolsos e privilegia o toque; e os matraquilhos (matrecos) têm versões muito diferentes consoante o uso — veja o nosso comparativo entre <a href="blog-matraquilhos-profissionais-vs-domesticos.html">matraquilhos profissionais e domésticos</a>.</p>
+      <p><strong>Novo ou usado?</strong> Todos os equipamentos usados que vendemos são revistos e testados pela nossa equipa técnica: pano, borrachas, nivelamento e mecânica. Para uso doméstico ou para um café que quer controlar o investimento, um bilhar usado revisto é frequentemente a melhor relação qualidade/preço — com a segurança de ter <a href="servicos.html">assistência técnica no Porto</a> ao longo de toda a vida da mesa.</p>
+      <p>Em todas as compras, a entrega, a montagem e o nivelamento da ardósia estão incluídos, no Porto e em todo o Norte de Portugal. Em caso de dúvida, <a href="contactos.html">fale connosco</a> ou consulte as <a href="faq.html">perguntas frequentes</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
      CTA — ORÇAMENTO
 ════════════════════════════════════════════════ -->
 <section class="section cta-section" style="background:var(--charcoal); border-top:1px solid var(--border);">
@@ -340,6 +390,8 @@
           <li><a href="index.html">Início</a></li>
           <li><a href="bilhares.html">Bilhares</a></li>
           <li><a href="servicos.html">Serviços</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="faq.html">FAQ</a></li>
           <li><a href="contactos.html">Contactos</a></li>
         </ul>
       </div>

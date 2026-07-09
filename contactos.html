@@ -40,6 +40,46 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+
+  <!-- Structured Data: ContactPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contactos — Portobilhares",
+    "url": "https://portobilhares.com/contactos.html",
+    "inLanguage": "pt-PT",
+    "mainEntity": {
+      "@type": "SportingGoodsStore",
+      "name": "Portobilhares",
+      "image": "https://portobilhares.com/Assets/logo.jpg",
+      "telephone": ["+351222054616", "+351933266520"],
+      "email": "portobilhares@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rua António Cândido, nº 39",
+        "addressLocality": "Porto",
+        "postalCode": "4200-076",
+        "addressRegion": "Porto",
+        "addressCountry": "PT"
+      },
+      "geo": { "@type": "GeoCoordinates", "latitude": 41.164440, "longitude": -8.608527 },
+      "areaServed": ["Porto", "Norte de Portugal"]
+    }
+  }
+  </script>
+
+  <!-- Structured Data: Breadcrumb -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://portobilhares.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Contactos", "item": "https://portobilhares.com/contactos.html" }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -54,6 +94,8 @@
       <li><a href="index.html">Início</a></li>
       <li><a href="bilhares.html">Bilhares</a></li>
       <li><a href="servicos.html">Serviços</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="faq.html">FAQ</a></li>
       <li><a href="contactos.html">Contactos</a></li>
     </ul>
     <div class="nav-right">
@@ -73,6 +115,8 @@
   <a href="index.html">Início</a>
   <a href="bilhares.html">Bilhares</a>
   <a href="servicos.html">Serviços</a>
+  <a href="blog.html">Blog</a>
+  <a href="faq.html">FAQ</a>
   <a href="contactos.html">Contactos</a>
   <a href="tel:+351222054616" class="mobile-phone">222 054 616</a>
 </div>
@@ -275,6 +319,8 @@
           <li><a href="index.html">Início</a></li>
           <li><a href="bilhares.html">Bilhares</a></li>
           <li><a href="servicos.html">Serviços</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="faq.html">FAQ</a></li>
           <li><a href="contactos.html">Contactos</a></li>
         </ul>
       </div>

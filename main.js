@@ -86,6 +86,15 @@ if (filterBtns.length) {
   });
 }
 
+/* ── Comparador antes/depois (Trabalhos Realizados) ── */
+document.querySelectorAll('.ba-range').forEach(range => {
+  const compare = range.closest('.ba-compare');
+  if (!compare) return;
+  const update = () => compare.style.setProperty('--pos', range.value + '%');
+  range.addEventListener('input', update);
+  update();
+});
+
 /* ── Form submission (demo — logs to console) ─────── */
 function handleForm(formId, successId) {
   const form = document.getElementById(formId);

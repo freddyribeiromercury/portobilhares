@@ -2,7 +2,7 @@
    PORTOBILHARES — STYLES.CSS
    ===================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Bebas+Neue&family=Outfit:wght@300;400;500;600&display=swap');
 
 /* ─── TOKENS ──────────────────────────────────────── */
 :root {
@@ -303,10 +303,10 @@ button { font-family: inherit; }
   flex-shrink: 0;
 }
 .hero-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2.75rem, 7vw, 6.5rem);
-  line-height: 0.95;
-  letter-spacing: 0.015em;
+  font-family: 'Alex Brush', cursive;
+  font-size: clamp(3.25rem, 8vw, 7.5rem);
+  line-height: 1.05;
+  letter-spacing: 0.01em;
   color: var(--cream);
   margin-bottom: 1.75rem;
 }
@@ -1066,7 +1066,7 @@ footer {
 }
 
 @media (max-width: 540px) {
-  .hero-title { font-size: 3.75rem; }
+  .hero-title { font-size: 4.25rem; }
   .hero-eyebrow { font-size: 0.62rem; letter-spacing: 0.16em; gap: 0.5rem; }
   .hero-eyebrow::before { width: 20px; }
   .hero-ctas { flex-direction: column; }

@@ -968,6 +968,10 @@ footer {
 .footer-contact-row svg { width: 13px; height: 13px; color: var(--amber); margin-top: 3px; flex-shrink: 0; }
 .footer-contact-row a { text-decoration: none; color: var(--cream-60); transition: color 0.2s; }
 .footer-contact-row a:hover { color: var(--amber); }
+.footer-lr { display: block; margin-top: 1.1rem; }
+.footer-lr img { width: 150px; height: auto; opacity: 0.85; transition: opacity 0.2s; }
+.footer-lr a:hover img { opacity: 1; }
+.footer-lr span { display: block; margin-top: 0.4rem; font-size: 0.72rem; }
 .footer-bottom {
   display: flex;
   align-items: center;

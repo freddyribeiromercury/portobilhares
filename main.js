@@ -72,16 +72,140 @@ if (revealEls.length) {
 const filterBtns = document.querySelectorAll('.filter-btn');
 const productCards = document.querySelectorAll('.product-card[data-cat]');
 
+function applyFilter(filter) {
+  filterBtns.forEach(b => b.classList.toggle('active', b.dataset.filter === filter));
+  productCards.forEach(card => {
+    const show = filter === 'all' || card.dataset.cat === filter;
+    card.style.display = show ? '' : 'none';
+  });
+}
+
 if (filterBtns.length) {
   filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const filter = btn.dataset.filter;
-      productCards.forEach(card => {
-        const show = filter === 'all' || card.dataset.cat === filter;
-        card.style.display = show ? '' : 'none';
-      });
+    btn.addEventListener('click', () => applyFilter(btn.dataset.filter));
+  });
+
+  /* categoria vinda de bilhares.html?cat=… */
+  const wanted = new URLSearchParams(window.location.search).get('cat');
+  if (wanted && [...filterBtns].some(b => b.dataset.filter === wanted)) {
+    applyFilter(wanted);
+  }
+}
+
+/* ── Lightbox de produtos ─────────────────────────── */
+/* construído só nas páginas com cards sem data-href (ex.: bilhares.html) */
+function buildLightbox() {
+  const icon = d => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
+
+  const lightbox = document.createElement('div');
+  lightbox.className = 'lightbox';
+  lightbox.setAttribute('role', 'dialog');
+  lightbox.setAttribute('aria-modal', 'true');
+  lightbox.setAttribute('aria-label', 'Pré-visualização do produto');
+  lightbox.innerHTML = `
+    <div class="lightbox-figure">
+      <div class="lightbox-counter"></div>
+      <button class="lightbox-btn lightbox-close" type="button" aria-label="Fechar">${icon('<path d="M18 6 6 18M6 6l12 12"/>')}</button>
+      <button class="lightbox-btn lightbox-prev" type="button" aria-label="Produto anterior">${icon('<path d="M15 18 9 12l6-6"/>')}</button>
+      <button class="lightbox-btn lightbox-next" type="button" aria-label="Produto seguinte">${icon('<path d="m9 18 6-6-6-6"/>')}</button>
+      <img class="lightbox-img" alt="">
+      <div class="lightbox-caption">
+        <div class="product-type"></div>
+        <div class="product-name"></div>
+        <div class="product-desc"></div>
+      </div>
+    </div>`;
+  document.body.appendChild(lightbox);
+
+  const lbImg     = lightbox.querySelector('.lightbox-img');
+  const lbType    = lightbox.querySelector('.lightbox-caption .product-type');
+  const lbName    = lightbox.querySelector('.lightbox-caption .product-name');
+  const lbDesc    = lightbox.querySelector('.lightbox-caption .product-desc');
+  const lbCounter = lightbox.querySelector('.lightbox-counter');
+  const lbPrev    = lightbox.querySelector('.lightbox-prev');
+  const lbNext    = lightbox.querySelector('.lightbox-next');
+
+  let visibleCards = [];
+  let current = 0;
+  let lastFocused = null;
+
+  const text = (card, sel) => {
+    const el = card.querySelector(sel);
+    return el ? el.textContent.trim() : '';
+  };
+
+  function show(i) {
+    const card = visibleCards[i];
+    if (!card) return;
+    current = i;
+    const img = card.querySelector('.product-card-bg');
+    lbImg.src = img ? img.getAttribute('src') : '';
+    lbImg.alt = img ? (img.getAttribute('alt') || '') : '';
+    lbType.textContent = text(card, '.product-type');
+    lbName.textContent = text(card, '.product-name');
+    lbDesc.textContent = text(card, '.product-desc');
+    lbCounter.textContent = `${i + 1} / ${visibleCards.length}`;
+    const many = visibleCards.length > 1;
+    lbPrev.style.display = many ? '' : 'none';
+    lbNext.style.display = many ? '' : 'none';
+    lbCounter.style.display = many ? '' : 'none';
+  }
+
+  const step = dir => show((current + dir + visibleCards.length) % visibleCards.length);
+
+  function openLightbox(card) {
+    visibleCards = [...productCards].filter(c => c.style.display !== 'none');
+    const i = visibleCards.indexOf(card);
+    if (i === -1) return;
+    lastFocused = document.activeElement;
+    show(i);
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    lightbox.querySelector('.lightbox-close').focus();
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+    if (lastFocused) lastFocused.focus();
+  }
+
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox || e.target.closest('.lightbox-close')) closeLightbox();
+    else if (e.target.closest('.lightbox-prev')) step(-1);
+    else if (e.target.closest('.lightbox-next')) step(1);
+  });
+
+  document.addEventListener('keydown', e => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape')     closeLightbox();
+    if (e.key === 'ArrowLeft')  step(-1);
+    if (e.key === 'ArrowRight') step(1);
+  });
+
+  return openLightbox;
+}
+
+/* ── Interação dos cards de produto ───────────────── */
+if (productCards.length) {
+  /* index.html: todos os cards têm data-href → não há preview a construir */
+  const openLightbox = [...productCards].some(c => !c.dataset.href) ? buildLightbox() : null;
+
+  productCards.forEach(card => {
+    /* cards com data-href navegam; os restantes abrem o preview */
+    const href = card.dataset.href;
+    const activate = () => {
+      if (href) window.location.href = href;
+      else if (openLightbox) openLightbox(card);
+    };
+    card.setAttribute('role', href ? 'link' : 'button');
+    card.setAttribute('tabindex', '0');
+    card.addEventListener('click', activate);
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || (e.key === ' ' && !href)) {
+        e.preventDefault();
+        activate();
+      }
     });
   });
 }

@@ -668,6 +668,37 @@ body.loaded .hero-ctas     { animation: fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) f
   margin: 0 auto;
   border: 1px solid var(--border);
 }
+.lightbox-video {
+  width: 100%;
+  max-height: calc(100vh - 14rem);
+  margin: 0 auto;
+  border: 1px solid var(--border);
+  background: #000;
+}
+
+/* media-only cards (fotos/vídeos sem overlay de produto) */
+.media-play {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 3.4rem; height: 3.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(20, 20, 20, 0.6);
+  border: 1px solid rgba(245, 240, 225, 0.5);
+  color: var(--cream);
+  backdrop-filter: blur(3px);
+  transition: background 0.25s ease, border-color 0.25s ease;
+  pointer-events: none;
+}
+.media-card-video:hover .media-play {
+  background: var(--amber);
+  border-color: var(--amber);
+  color: var(--black);
+}
+.media-play svg { width: 1.6rem; height: 1.6rem; margin-left: 2px; }
 .lightbox-caption {
   padding-top: 1.1rem;
   text-align: center;
@@ -721,7 +752,7 @@ body.loaded .hero-ctas     { animation: fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) f
 }
 @media (max-width: 640px) {
   .lightbox { padding: 4.5rem 0.75rem; }
-  .lightbox-img { max-height: calc(100vh - 16rem); }
+  .lightbox-img, .lightbox-video { max-height: calc(100vh - 16rem); }
   .lightbox-close { top: -3rem; right: 0.25rem; }
   .lightbox-counter { top: -2.75rem; left: 0.25rem; }
   .lightbox-prev, .lightbox-next { width: 2.5rem; height: 2.5rem; }

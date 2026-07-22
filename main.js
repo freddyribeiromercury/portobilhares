@@ -85,10 +85,12 @@ if (filterBtns.length) {
     btn.addEventListener('click', () => applyFilter(btn.dataset.filter));
   });
 
-  /* categoria vinda de bilhares.html?cat=… */
+  /* categoria vinda de bilhares.html?cat=…; por defeito abre em Snooker */
   const wanted = new URLSearchParams(window.location.search).get('cat');
   if (wanted && [...filterBtns].some(b => b.dataset.filter === wanted)) {
     applyFilter(wanted);
+  } else {
+    applyFilter('snooker');
   }
 }
 
@@ -109,6 +111,7 @@ function buildLightbox() {
       <button class="lightbox-btn lightbox-prev" type="button" aria-label="Produto anterior">${icon('<path d="M15 18 9 12l6-6"/>')}</button>
       <button class="lightbox-btn lightbox-next" type="button" aria-label="Produto seguinte">${icon('<path d="m9 18 6-6-6-6"/>')}</button>
       <img class="lightbox-img" alt="">
+      <video class="lightbox-video" controls playsinline preload="metadata" style="display:none"></video>
       <div class="lightbox-caption">
         <div class="product-type"></div>
         <div class="product-name"></div>
@@ -118,6 +121,7 @@ function buildLightbox() {
   document.body.appendChild(lightbox);
 
   const lbImg     = lightbox.querySelector('.lightbox-img');
+  const lbVideo   = lightbox.querySelector('.lightbox-video');
   const lbType    = lightbox.querySelector('.lightbox-caption .product-type');
   const lbName    = lightbox.querySelector('.lightbox-caption .product-name');
   const lbDesc    = lightbox.querySelector('.lightbox-caption .product-desc');
@@ -125,7 +129,8 @@ function buildLightbox() {
   const lbPrev    = lightbox.querySelector('.lightbox-prev');
   const lbNext    = lightbox.querySelector('.lightbox-next');
 
-  let visibleCards = [];
+  /* slides: cada entrada é { src, alt, type, name, desc } */
+  let slides = [];
   let current = 0;
   let lastFocused = null;
 
@@ -134,37 +139,81 @@ function buildLightbox() {
     return el ? el.textContent.trim() : '';
   };
 
+  function stopVideo() {
+    lbVideo.pause();
+    lbVideo.removeAttribute('src');
+    lbVideo.load();
+    lbVideo.style.display = 'none';
+  }
+
   function show(i) {
-    const card = visibleCards[i];
-    if (!card) return;
+    const slide = slides[i];
+    if (!slide) return;
     current = i;
-    const img = card.querySelector('.product-card-bg');
-    lbImg.src = img ? img.getAttribute('src') : '';
-    lbImg.alt = img ? (img.getAttribute('alt') || '') : '';
-    lbType.textContent = text(card, '.product-type');
-    lbName.textContent = text(card, '.product-name');
-    lbDesc.textContent = text(card, '.product-desc');
-    lbCounter.textContent = `${i + 1} / ${visibleCards.length}`;
-    const many = visibleCards.length > 1;
+    if (slide.video) {
+      stopVideo();
+      lbVideo.src = slide.video;
+      lbVideo.style.display = '';
+      lbImg.style.display = 'none';
+      lbImg.removeAttribute('src');
+    } else {
+      stopVideo();
+      lbImg.src = slide.src;
+      lbImg.alt = slide.alt || '';
+      lbImg.style.display = '';
+    }
+    lbType.textContent = slide.type;
+    lbName.textContent = slide.name;
+    lbDesc.textContent = slide.desc;
+    lbCounter.textContent = `${i + 1} / ${slides.length}`;
+    const many = slides.length > 1;
     lbPrev.style.display = many ? '' : 'none';
     lbNext.style.display = many ? '' : 'none';
     lbCounter.style.display = many ? '' : 'none';
   }
 
-  const step = dir => show((current + dir + visibleCards.length) % visibleCards.length);
+  const step = dir => show((current + dir + slides.length) % slides.length);
 
   function openLightbox(card) {
-    visibleCards = [...productCards].filter(c => c.style.display !== 'none');
-    const i = visibleCards.indexOf(card);
-    if (i === -1) return;
+    const type = text(card, '.product-type');
+    const name = text(card, '.product-name');
+    const desc = text(card, '.product-desc');
+    const gallery = card.dataset.gallery;
+
+    if (gallery) {
+      /* card com galeria própria: navega pelas fotos deste produto */
+      slides = gallery.split('|').filter(Boolean).map(src => ({
+        src, alt: name, type, name, desc,
+      }));
+      current = 0;
+    } else {
+      /* comportamento padrão: navega pelos cards visíveis */
+      const visibleCards = [...productCards].filter(c => c.style.display !== 'none' && !c.dataset.gallery);
+      slides = visibleCards.map(c => {
+        const media = c.querySelector('.product-card-bg');
+        const isImg = media && media.tagName === 'IMG';
+        return {
+          src: isImg ? media.getAttribute('src') : '',
+          video: c.dataset.video || '',
+          alt: c.dataset.alt || (isImg ? (media.getAttribute('alt') || '') : ''),
+          type: text(c, '.product-type'),
+          name: text(c, '.product-name'),
+          desc: text(c, '.product-desc'),
+        };
+      });
+      current = visibleCards.indexOf(card);
+      if (current === -1) return;
+    }
+
     lastFocused = document.activeElement;
-    show(i);
+    show(current);
     lightbox.classList.add('open');
     document.body.style.overflow = 'hidden';
     lightbox.querySelector('.lightbox-close').focus();
   }
 
   function closeLightbox() {
+    stopVideo();
     lightbox.classList.remove('open');
     document.body.style.overflow = '';
     if (lastFocused) lastFocused.focus();
